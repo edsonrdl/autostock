@@ -11,22 +11,31 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "Product")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Supplier {
 
-    @Column(name = "name", length = 15, nullable = false, unique = false)
-    @Size(min = 3, max = 15, message = "O nome do fornecedor não pode ter mais de 15 caracteres e menos que 3")
-    @NotBlank(message = "O Nome do fornecedor é obrigatório e não pode estar vazio")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "description", length = 30, nullable = false, unique = false)
-    @Size(min =5, max = 30, message = "A descrição do fornecedor não pode conter menos de 5 caracteres e não deve ter mais que 30 caracteres")
-    @NotBlank(message = "A Descrição do fornecedor não pode está vazio")
-    private String description;
+  private String name;
 
-  @JsonProperty(access = Access.WRITE_ONLY)  
-  @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL) 
+  private String description;
+
   private List<Product> product = new ArrayList<Product>();
-    
+
 }
