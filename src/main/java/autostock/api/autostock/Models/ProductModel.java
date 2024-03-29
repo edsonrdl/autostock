@@ -5,6 +5,9 @@ import javax.validation.constraints.Size;
 
 import autostock.api.autostock.entities.Supplier;
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
@@ -12,7 +15,11 @@ import lombok.Data;
 @Data
 public class ProductModel {
 
-     @Column(name = "name", length = 15, nullable = false, unique = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", length = 15, nullable = false, unique = false)
     @Size(min = 3, max = 15, message = "O nome não pode ter mais de 15 caracteres e menos que 3")
     @NotBlank(message = "O Nome é obrigatório e não pode estar vazio")
     private String name;

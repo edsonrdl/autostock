@@ -1,6 +1,5 @@
 package autostock.api.autostock.useCases.supplier.GetSupplier;
 
-import autostock.api.autostock.entities.Product;
 import autostock.api.autostock.entities.Supplier;
 import autostock.api.autostock.repository.SupplierRepository;
 import jakarta.persistence.EntityNotFoundException;

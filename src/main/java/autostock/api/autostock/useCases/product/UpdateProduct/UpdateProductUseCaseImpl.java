@@ -1,7 +1,5 @@
 package autostock.api.autostock.useCases.product.UpdateProduct;
 
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties.RSocket.Client;
-
 import autostock.api.autostock.entities.Product;
 import autostock.api.autostock.repository.ProductRepository;
 import jakarta.transaction.Transactional;
