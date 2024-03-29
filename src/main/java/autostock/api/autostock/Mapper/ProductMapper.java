@@ -8,7 +8,6 @@ public class ProductMapper {
         Product product = new Product();
         product.setName(productModel.getName());
         product.setPrice(productModel.getPrice());
-        // Outros mapeamentos, se houver
         return product;
     }
 }

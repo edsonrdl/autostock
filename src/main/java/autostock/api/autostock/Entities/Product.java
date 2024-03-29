@@ -5,10 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +36,30 @@ public class Product {
     @NotBlank(message = "O Nome é obrigatório e não pode estar vazio")
     private String name;
 
+    
+    @Column(name = "price", length = 5, nullable = false, unique = false)
+    @Size(min =1, max = 5, message = "O valor do produto  não pode ter menos de 1 caractere e mais do que 5 caracteres")
+    @NotBlank(message = "O valor do produto   não pode está vazio")
     private double price;
 
+    @Column(name = "description", length = 30, nullable = false, unique = false)
+    @Size(min =5, max = 30, message = "A descrição não pode conter menos de 5 caracteres e não deve ter mais que 30 caracteres")
+    @NotBlank(message = "A Descrição do produto não pode está vazio")
+    private String description;
+
+    @Column(name = "amount", length = 5, nullable = false, unique = false)
+    @Size(min =1, max = 5, message = "A Quantidade deve conter pelo menos 1 caractere e até 5 caracteres")
+    @NotBlank(message = "Quantidade não pode está vazio")
+    private int amount;
+
+    @Column(name = "amount_minimum", length = 5, nullable = false, unique = false)
+    @Size(min =1, max = 5, message = "A Quantidade mínima deve ser ")
+    @NotBlank(message = "A Quantidade do produto não pode está vazio")
+    private int amountMinimum ;
+
+    @ManyToOne 
+    @JoinColumn(name = "product_supplier_id", nullable = false, updatable = false)
+    private Supplier supplier;
+
+ 
 }

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import autostock.api.autostock.Entities.Product;
+import autostock.api.autostock.Mapper.ProductMapper;
 import autostock.api.autostock.Models.ProductModel;
 
 public class ProductController {
