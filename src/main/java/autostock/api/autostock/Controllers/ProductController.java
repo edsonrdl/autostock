@@ -45,10 +45,6 @@ public class ProductController {
     private IDeleteProductUseCase  _IDeleteProductUseCase ;
 
 
-    public ProductController(CreateProductUseCaseImpl createProductUseCase) {
-        _ICreateProductUseCase = createProductUseCase;
-    }
-
     @PostMapping
     public ResponseEntity<Object> createProduct(@RequestBody ProductModel productModel) {
         Product product = ProductMapper.mapToEntity(productModel);

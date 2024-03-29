@@ -1,5 +1,5 @@
 package autostock.api.autostock.useCases.supplier.DeleteSupplier;
 
-public interface iDeleteSupplierUseCase {
+public interface IDeleteSupplierUseCase {
     void deleteSupplier(Long id);
 }

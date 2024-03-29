@@ -3,7 +3,7 @@ package autostock.api.autostock.useCases.supplier.DeleteSupplier;
 import autostock.api.autostock.repository.SupplierRepository;
 import jakarta.transaction.Transactional;
 
-public class DeleteSupplierUseCaseImpl implements iDeleteSupplierUseCase {
+public class DeleteSupplierUseCaseImpl implements IDeleteSupplierUseCase {
 
     private final SupplierRepository _supplierRepository;
 
