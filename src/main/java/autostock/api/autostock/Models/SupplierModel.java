@@ -1,4 +1,4 @@
-package autostock.api.autostock.Models;
+package autostock.api.autostock.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import autostock.api.autostock.Entities.Product;
+
+import autostock.api.autostock.entities.Product;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;

@@ -1,7 +1,7 @@
-package autostock.api.autostock.Mapper;
+package autostock.api.autostock.mapper;
 
-import autostock.api.autostock.Entities.Product;
-import autostock.api.autostock.Models.ProductModel;
+import autostock.api.autostock.entities.Product;
+import autostock.api.autostock.models.ProductModel;
 
 public class ProductMapper {
      public static Product mapToEntity(ProductModel productModel) {

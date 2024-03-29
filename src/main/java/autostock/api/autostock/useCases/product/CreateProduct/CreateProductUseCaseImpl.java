@@ -1,9 +1,9 @@
-package autostock.api.autostock.UseCases.CreateProduct;
+package autostock.api.autostock.useCases.product.CreateProduct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import autostock.api.autostock.Entities.Product;
-import autostock.api.autostock.Repository.ProductRepository;
+import autostock.api.autostock.entities.Product;
+import autostock.api.autostock.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 
 public class CreateProductUseCaseImpl implements ICreateProductUseCase {

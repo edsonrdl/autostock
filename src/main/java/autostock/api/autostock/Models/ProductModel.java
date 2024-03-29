@@ -1,8 +1,9 @@
-package autostock.api.autostock.Models;
+package autostock.api.autostock.models;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import autostock.api.autostock.Entities.Supplier;
+
+import autostock.api.autostock.entities.Supplier;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

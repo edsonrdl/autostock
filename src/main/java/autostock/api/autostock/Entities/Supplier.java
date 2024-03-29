@@ -1,4 +1,4 @@
-package autostock.api.autostock.Entities;
+package autostock.api.autostock.entities;
 
 import java.util.ArrayList;
 import java.util.List;
