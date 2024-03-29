@@ -8,6 +8,10 @@ public class ProductMapper {
         Product product = new Product();
         product.setName(productModel.getName());
         product.setPrice(productModel.getPrice());
+        product.setDescription(productModel.getDescription());
+        product.setAmount(productModel.getAmount());
+        product.setAmountMinimum(productModel.getAmountMinimum());
+        product.setSupplier(productModel.getSupplier());
         return product;
     }
 }
