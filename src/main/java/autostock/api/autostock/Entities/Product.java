@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package autostock.api.autostock.Entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,12 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = Product.TABLE_NAME)
+@Table(name = "Product")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
