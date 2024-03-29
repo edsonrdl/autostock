@@ -41,5 +41,4 @@ public class ProductModel {
     @ManyToOne 
     @JoinColumn(name = "product_supplier_id", nullable = false, updatable = false)
     private Supplier supplier;
-
 }
