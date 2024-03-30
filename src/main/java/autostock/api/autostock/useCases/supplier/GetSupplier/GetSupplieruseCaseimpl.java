@@ -15,6 +15,8 @@ public class GetSupplieruseCaseimpl implements IGetSupplierUseCase {
      public GetSupplieruseCaseimpl(SupplierRepository supplierRepository){
         _supplierRepository=supplierRepository;
 }
+
+@SuppressWarnings("null")
     @Transactional
     public Supplier getSupplier(Long id){
         return _supplierRepository.findById(id).orElseThrow(()-> new EntityNotFoundException(

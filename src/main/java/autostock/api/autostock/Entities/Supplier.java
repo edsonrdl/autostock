@@ -25,6 +25,7 @@ public class Supplier {
   private String description;
 
   @OneToMany(mappedBy = "supplier")
+  @JsonIgnore
   private List<Product> product = new ArrayList<Product>();
 
 }

@@ -21,7 +21,7 @@ import autostock.api.autostock.models.ProductModel;
 import autostock.api.autostock.useCases.product.CreateProduct.ICreateProductUseCase;
 import autostock.api.autostock.useCases.product.DeleteProduct.IDeleteProductUseCase;
 import autostock.api.autostock.useCases.product.GetAllProduct.IGetAllProductUseCase;
-import autostock.api.autostock.useCases.product.GetAllProductAmountMinimum.IGetAllProductAmountMinimun;
+import autostock.api.autostock.useCases.product.GetAllProductsInSupplier.IGetAllProductsInSupplier;
 import autostock.api.autostock.useCases.product.GetProduct.IGetProductUseCase;
 import autostock.api.autostock.useCases.product.UpdateProduct.IUpdateProductUseCase;
 import jakarta.persistence.EntityNotFoundException;
@@ -46,7 +46,7 @@ public class ProductController {
     private IDeleteProductUseCase  _IDeleteProductUseCase ;
 
     @Autowired
-    private IGetAllProductAmountMinimun  _IGetAllProductAmountMinimum ;
+    private  IGetAllProductsInSupplier _IGetAllProductsInSupplier;
 
 
     @PostMapping
@@ -70,10 +70,9 @@ public class ProductController {
 
     @GetMapping("/products-amount-minimum")
     public ResponseEntity<List<Product>> getAllProductAmountMinimum(
-            @RequestParam Long supplierId,
-            @RequestParam int amountMinimum
+            @RequestParam String supplierName
     ) {
-        List<Product> products = _IGetAllProductAmountMinimum.getAllProductAmountMinimum(supplierId, amountMinimum);
+        List<Product> products = _IGetAllProductsInSupplier.getAllProductsInSupplier(supplierName);
         return ResponseEntity.ok(products);
     }
 

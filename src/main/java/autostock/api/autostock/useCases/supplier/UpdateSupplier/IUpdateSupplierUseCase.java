@@ -4,5 +4,4 @@ import autostock.api.autostock.entities.Supplier;
 
 public interface IUpdateSupplierUseCase {
     Supplier updateSupplier(Supplier supplier);
-    
 }

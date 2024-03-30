@@ -14,6 +14,7 @@ public class DeleteSupplierUseCaseImpl implements IDeleteSupplierUseCase {
         _supplierRepository = supplierRepository;
     }
 
+    @SuppressWarnings("null")
     @Transactional
     public void deleteSupplier(Long id) {
 

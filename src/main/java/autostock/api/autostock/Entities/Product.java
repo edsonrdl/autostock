@@ -32,6 +32,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
+    @JsonIgnore
     @NotNull(message = "O fornecedor do produto não pode ser nulo")
     private Supplier supplier;
 }
