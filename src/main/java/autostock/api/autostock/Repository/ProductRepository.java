@@ -9,6 +9,5 @@ import autostock.api.autostock.entities.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    List<Product> findBySupplierId(Long supplierId);
-    
+    List<Product> findBySupplierIdAndAmountLessThanEqual(Long supplierId, int amountMinimum);
 }

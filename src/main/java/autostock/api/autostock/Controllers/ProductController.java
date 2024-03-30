@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import autostock.api.autostock.entities.Product;
@@ -20,6 +21,7 @@ import autostock.api.autostock.models.ProductModel;
 import autostock.api.autostock.useCases.product.CreateProduct.ICreateProductUseCase;
 import autostock.api.autostock.useCases.product.DeleteProduct.IDeleteProductUseCase;
 import autostock.api.autostock.useCases.product.GetAllProduct.IGetAllProductUseCase;
+import autostock.api.autostock.useCases.product.GetAllProductAmountMinimum.IGetAllProductAmountMinimun;
 import autostock.api.autostock.useCases.product.GetProduct.IGetProductUseCase;
 import autostock.api.autostock.useCases.product.UpdateProduct.IUpdateProductUseCase;
 import jakarta.persistence.EntityNotFoundException;
@@ -43,6 +45,9 @@ public class ProductController {
     @Autowired
     private IDeleteProductUseCase  _IDeleteProductUseCase ;
 
+    @Autowired
+    private IGetAllProductAmountMinimun  _IGetAllProductAmountMinimum ;
+
 
     @PostMapping
     public ResponseEntity<Object> createProduct(@RequestBody ProductModel productModel) {
@@ -61,6 +66,15 @@ public class ProductController {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
+    }
+
+    @GetMapping("/products-amount-minimum")
+    public ResponseEntity<List<Product>> getAllProductAmountMinimum(
+            @RequestParam Long supplierId,
+            @RequestParam int amountMinimum
+    ) {
+        List<Product> products = _IGetAllProductAmountMinimum.getAllProductAmountMinimum(supplierId, amountMinimum);
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/products")
