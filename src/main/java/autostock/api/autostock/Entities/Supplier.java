@@ -2,19 +2,15 @@ package autostock.api.autostock.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Product")
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class Supplier {
 
@@ -26,6 +22,7 @@ public class Supplier {
 
   private String description;
 
+  @OneToMany(mappedBy = "supplier")
   private List<Product> product = new ArrayList<Product>();
 
 }

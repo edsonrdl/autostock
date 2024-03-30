@@ -1,10 +1,13 @@
 package autostock.api.autostock.useCases.supplier.GetSupplier;
 
+import org.springframework.stereotype.Component;
+
 import autostock.api.autostock.entities.Supplier;
 import autostock.api.autostock.repository.SupplierRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+@Component
 public class GetSupplieruseCaseimpl implements IGetSupplierUseCase {
      private final SupplierRepository _supplierRepository;
 

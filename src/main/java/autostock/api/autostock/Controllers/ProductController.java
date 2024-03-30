@@ -23,7 +23,6 @@ import autostock.api.autostock.useCases.product.GetAllProduct.IGetAllProductUseC
 import autostock.api.autostock.useCases.product.GetProduct.IGetProductUseCase;
 import autostock.api.autostock.useCases.product.UpdateProduct.IUpdateProductUseCase;
 import jakarta.persistence.EntityNotFoundException;
-import autostock.api.autostock.useCases.product.CreateProduct.CreateProductUseCaseImpl;
 
 
 @RestController

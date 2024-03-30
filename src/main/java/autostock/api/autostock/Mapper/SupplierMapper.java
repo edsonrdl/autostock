@@ -6,10 +6,9 @@ import autostock.api.autostock.models.SupplierModel;
 public class SupplierMapper {
     public static Supplier mapToEntity(SupplierModel supplierModel) {
         Supplier supplier = new Supplier();
-
+        supplier.setId(supplierModel.getId());
         supplier.setName(supplierModel.getName());
         supplier.setDescription(supplierModel.getDescription());
-        supplier.setProduct(supplierModel.getProduct());
         return supplier;
     }
     

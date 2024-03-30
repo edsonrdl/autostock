@@ -3,17 +3,25 @@ package autostock.api.autostock.models;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import autostock.api.autostock.entities.Supplier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Table(name = ProductModel.TABLE_NAME)
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class ProductModel {
+    public static final String TABLE_NAME = "product";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +48,12 @@ public class ProductModel {
     @NotBlank(message = "Quantidade não pode está vazio")
     private int amount;
 
-    @Column(name = "amount_minimum", length = 5, nullable = false, unique = false)
+    @Column(name = "minimum", length = 5, nullable = false, unique = false)
     @Size(min =1, max = 5, message = "A Quantidade mínima deve ser ")
     @NotBlank(message = "A Quantidade do produto não pode está vazio")
     private int amountMinimum ;
 
     @ManyToOne 
     @JoinColumn(name = "product_supplier_id", nullable = false, updatable = false)
-    private Supplier supplier;
+    private SupplierModel  supplierModel ;
 }

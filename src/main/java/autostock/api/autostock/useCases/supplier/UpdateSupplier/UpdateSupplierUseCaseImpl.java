@@ -1,9 +1,12 @@
 package autostock.api.autostock.useCases.supplier.UpdateSupplier;
 
+import org.springframework.stereotype.Component;
+
 import autostock.api.autostock.entities.Supplier;
 import autostock.api.autostock.repository.SupplierRepository;
 import jakarta.transaction.Transactional;
 
+@Component
 public class UpdateSupplierUseCaseImpl implements IUpdateSupplierUseCase {
 
     private final SupplierRepository _supplierRepository;

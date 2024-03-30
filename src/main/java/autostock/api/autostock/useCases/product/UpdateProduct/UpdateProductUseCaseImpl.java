@@ -1,9 +1,12 @@
 package autostock.api.autostock.useCases.product.UpdateProduct;
 
+import org.springframework.stereotype.Component;
+
 import autostock.api.autostock.entities.Product;
 import autostock.api.autostock.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 
+@Component
 public class UpdateProductUseCaseImpl implements IUpdateProductUseCase {
      private ProductRepository _productRepository;
 

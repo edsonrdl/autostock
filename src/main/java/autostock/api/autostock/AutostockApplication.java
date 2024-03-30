@@ -8,6 +8,7 @@ public class AutostockApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AutostockApplication.class, args);
+		System.out.println("Olá,Mundo");
 	}
 
 }

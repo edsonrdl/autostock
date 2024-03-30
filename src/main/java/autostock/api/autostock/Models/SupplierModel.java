@@ -4,17 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import autostock.api.autostock.entities.Product;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Table(name = SupplierModel.TABLE_NAME)
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class SupplierModel {
+    public static final String TABLE_NAME = "supplier";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", length = 15, nullable = false, unique = false)
     @Size(min = 3, max = 15, message = "O nome do fornecedor não pode ter mais de 15 caracteres e menos que 3")
@@ -27,7 +43,6 @@ public class SupplierModel {
     private String description;
 
     @JsonProperty(access = Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
-    private List<Product> product = new ArrayList<Product>();
-
+    @OneToMany(mappedBy = "supplierModel", cascade = CascadeType.ALL)
+    private List<ProductModel> product = new ArrayList<ProductModel>();
 }

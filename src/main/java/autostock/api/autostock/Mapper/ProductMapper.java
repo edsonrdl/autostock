@@ -12,7 +12,6 @@ public class ProductMapper {
         product.setDescription(productModel.getDescription());
         product.setAmount(productModel.getAmount());
         product.setAmountMinimum(productModel.getAmountMinimum());
-        product.setSupplier(productModel.getSupplier());
         return product;
     }
 }
