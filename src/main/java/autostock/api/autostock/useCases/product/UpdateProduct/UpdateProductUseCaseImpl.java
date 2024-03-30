@@ -21,7 +21,7 @@ public class UpdateProductUseCaseImpl implements IUpdateProductUseCase {
             return  null;
         }
         product.setName(objProduct.getName());
-        product.setPrice(objProduct.getPrice());
+        product.setValue(objProduct.getValue());
         product.setDescription(objProduct.getDescription());
         product.setAmount(objProduct.getAmount());
         product.setAmountMinimum(objProduct.getAmountMinimum());

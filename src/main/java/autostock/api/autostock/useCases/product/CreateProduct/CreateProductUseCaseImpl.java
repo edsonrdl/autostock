@@ -18,6 +18,7 @@ public class CreateProductUseCaseImpl implements ICreateProductUseCase {
     @Transactional
     public Product createProduct(Product product) {
         product.setId((null));
+        product.setSupplier( product.getSupplier());
         _productRepository.save(product);
         return product;
     }

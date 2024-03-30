@@ -1,5 +1,7 @@
 package autostock.api.autostock.entities;
 
+import javax.validation.constraints.NotNull;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class Product {
 
     private String name;
 
-    private double price;
+    private double value;
 
     private String description;
 
@@ -27,6 +29,7 @@ public class Product {
     private int amountMinimum ;
 
     @ManyToOne
-   @JoinColumn(name = "supplier_id")
+    @JoinColumn(name = "supplier_id")
+    @NotNull(message = "O fornecedor do produto não pode ser nulo")
     private Supplier supplier;
 }
