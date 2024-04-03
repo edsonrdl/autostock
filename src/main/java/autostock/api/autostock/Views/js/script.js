@@ -4,15 +4,17 @@ const closeBtn = document.querySelector("#close-btn");
 const themeToggler = document.querySelector(".theme-toggler");
 const tbodyAllproducts = document.querySelector("#tbody-products-all");
 const productsAllbtn = document.querySelector("#btn-all-products");
+const createProductBtn = document.querySelector("#btn-create-product");
 const deleteProductBtn = document.querySelector("#btn-delete-product");
+const containerCreateDeleteUpdateProductsCrud= document.querySelector(".container-create-delete-update-products-crud");
 const titleCreateDeleteUpdateProduct = document.querySelector(
   ".title-create-delete-update-product"
 );
 const tbodyProductsRecentToday = document.querySelector(
   "#tbody-products-today"
 );
-const urlProduct = "http://localhost:8080/product/";
-const urlSupplier = "http://localhost:8080/supplier/";
+const urlProduct = "http://localhost:8080/product";
+const urlSupplier = "http://localhost:8080/supplier";
 
 menuBtn.addEventListener("click", () => {
   sideMenu.style.display = "block";
@@ -102,13 +104,10 @@ createCircularProgress(
   valueProgressCanceled
 );
 
-// const productToday = "products.json";
-
-
 
 const getAllProducts = async () => {
   try {
-    const response = await fetch(urlProduct + "products", {
+    const response = await fetch(urlProduct + "/products", {
       method: "GET",
     });
     if (!response.ok) {
@@ -123,7 +122,7 @@ const getAllProducts = async () => {
 };
 const getAllSupplier = async () => {
   try {
-    const response = await fetch(urlSupplier + "suppliers", {
+    const response = await fetch(urlSupplier + "/suppliers", {
       method: "GET",
     });
     if (!response.ok) {
@@ -139,7 +138,7 @@ const getAllSupplier = async () => {
 
 async function getProduct(idProduct) {
   try {
-    const response = await fetch(`${urlProduct}${idProduct}`, {
+    const response = await fetch(`${urlProduct}/${idProduct}`, {
       method: 'GET'
     });
     if (!response.ok) {
@@ -153,23 +152,6 @@ async function getProduct(idProduct) {
   }
 }
 
-async function getProduct(idProduct) {
-  try {
-    const response = await fetch(`${urlProduct}${idProduct}`, {
-      method: 'GET'
-    });
-    if (!response.ok) {
-      throw new Error('Erro ao buscar produto');
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Erro:', error);
-    throw error;
-  }
-}
-
- 
 
 const dashboardproductsToday = async () => {
   const products = await getAllProducts();
@@ -304,89 +286,94 @@ const searchproductNumber = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const decrementAmountMinumum = document.querySelector(
-    ".decrement-amountMinimum"
-  );
-  const incrementAmountMinumum = document.querySelector(
-    ".increment-amountMinimum"
-  );
-  const quantityInput = document.getElementById("amountMinimum");
 
-  decrementAmountMinumum.addEventListener("click", function () {
-    let currentValue = parseInt(quantityInput.value);
-    if (currentValue > 0) {
-      quantityInput.value = currentValue - 1;
-    }
-  });
+const createProduct = function () {
 
-  incrementAmountMinumum.addEventListener("click", function () {
-    let currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
-  });
-});
+  containerCreateDeleteUpdateProductsCrud.innerHTML = "";
+  titleCreateDeleteUpdateProduct.innerHTML = "Criar  Produto";
 
-document.addEventListener("DOMContentLoaded", function () {
-  const decrementAmount = document.querySelector(".decrement-amount");
-  const incrementAmount = document.querySelector(".increment-amount");
-  const quantityInput = document.getElementById("amount");
-
-  decrementAmount.addEventListener("click", function () {
-    let currentValue = parseInt(quantityInput.value);
-    if (currentValue > 0) {
-      quantityInput.value = currentValue - 1;
-    }
-  });
-
-  incrementAmount.addEventListener("click", function () {
-    let currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
-  });
-});
-
-const deleteProduct = function (event) {
-  const idProduct = event.currentTarget;
-  const deleteProductssd = async () => {
-    const product = await getProduct();
-    if (allproducts) {
-      const allproductsValidate = allproducts.products;
-      tbodyAllproducts.innerHTML = "";
-
-      allproductsValidate.forEach((product) => {
-        let suppliers = product.supplier;
-        const tr = document.createElement("tr");
-        const trContent = `
-     <td>${product.id}</td>
-     <td>${product.name}</td>
-     <td>${product.value}</td>
-     <td>${product.description}</td>
-     <td>${product.amount}</td>
-     <td>${product.amountMinimum}</td>
-     <td  onclick="toggleSuppler(${suppliers.id})" class="${
-          suppliers.name === "ALIEXPRESS"
-            ? "aliexpress"
-            : suppliers.name === "AMAZON"
-            ? "amazon"
-            : suppliers.name === "MERCADO LIVRE"
-            ? "mercado-livre"
-            : suppliers.name === "SHOPEE"
-            ? "shopee"
-            : "warning"
-        }">${suppliers.name}</td>
-        <td><span onclick="putProduct(${
-          product.id
-        })" class="material-symbols-outlined btn-edit-product">
-        edit</span></td>
-        <td><span onclick="putProduct(${
-          product.id
-        })" class="material-symbols-outlined btn-delete-product">
-        delete</span></td>
-        `;
-        tr.innerHTML = trContent;
-        tbodyAllproducts.appendChild(tr);
-      });
-    }
-  };
+      const containerCreateForm = `<div class="create-update-delete-form-product">
+      <form action="">
+          <div class="form-group-text">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" placeholder="Nome produto">
+              <label for="descricao">Descrição</label>
+              <input type="text" id="descricao" placeholder="Descreva o produto">
+          </div>
+          <div class="form-group-number">
+              <div class="form-content-number">
+                  <label for="valor">Valor</label>
+                  <input type="number" id="valor" min="0" step="0.01" required>
+              </div>
+              <div class="form-content-number">
+                  <label for="amount">Quantidade</label>
+                  <input id="amount" type="number" value="0" min="0" max="100" step="1">
+              </div>
+              <div class="form-content-number">
+                  <label for="amountMinimum">Qtd. Mínimo</label>
+                  <input id="amountMinimum" type="number" value="0" min="0" max="100" step="1">
+              </div>
+          </div>
+          <select id="select-supplier" required>
+              <option value="" disabled selected>Selecione um fornecedor</option>
+              <option value="3">ALIXPRESS</option>
+              <option value="4">AMAZON</option>
+              <option value="1">MERCADO LIVRE</option>
+              <option value="2">SHOPEE</option>
+          </select>
+          <button  id="btn-create-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
+      </form>
+  </div> `;
+        containerCreateDeleteUpdateProductsCrud.innerHTML = containerCreateForm;
+        const btnCreateConfirm = document.querySelector("#btn-create-confirm");
+        btnCreateConfirm.addEventListener("click", confirmFormCreater);
+        
 };
 
-deleteProductBtn.addEventListener("click", deleteProduct);
+createProductBtn.addEventListener("click", createProduct);
+
+
+const confirmFormCreater = async (event) => {
+  event.preventDefault(); 
+  
+  const name = document.getElementById('nome').value;
+  console.log(name);
+  const value = parseFloat(document.getElementById('valor').value);
+  console.log(value);
+  const description = document.getElementById('descricao').value;
+  console.log(description);
+  const amount = parseInt(document.getElementById('amount').value);
+  console.log(amount);
+  const amountMinimum = parseInt(document.getElementById('amountMinimum').value);
+  console.log(amount);
+  const supplierId =document.getElementById('select-supplier').value;
+  console.log(supplierId);
+
+  const data = {
+    name,
+    value,
+    description,
+    amount,
+    amountMinimum,
+    supplier: {
+      id: supplierId
+    }
+  };
+console.log(data);
+  try {
+    const response = await fetch(urlProduct, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+      throw new Error('Erro ao enviar dados para a API');
+    }
+    const responseData = await response.json();
+    console.log('Resposta da API:', responseData);
+  } catch (error) {
+    console.error('Erro ao enviar dados para a API:', error);
+  }
+};

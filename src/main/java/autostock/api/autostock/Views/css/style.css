@@ -1105,12 +1105,6 @@ main .right {
   .container-create-delete-update-products-crud  input[type="number"]:hover,.container-create-delete-update-products-crud   input[type="text"]:hover{
     box-shadow: none;
 }
-.container-create-delete-update-products-crud input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0; 
-} 
 .create-update-delete-form-product select{
     text-align: center;
     font-weight: 600;
@@ -1128,18 +1122,6 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: var(--color-white);
 }
 
-.container-input-amount-amountMinimum-remove-add-products input[type="number"] {
-    color: var(--color-back);
-    width: 50px;
-    background: transparent;
-    text-align: center;
-  }
-.container-input-amount-amountMinimum-remove-add-products input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0; 
-}
 .form-content-number{
     display: flex;
     justify-content: start;
