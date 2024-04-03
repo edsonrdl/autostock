@@ -5,7 +5,6 @@ const themeToggler = document.querySelector(".theme-toggler");
 const tbodyAllproducts = document.querySelector("#tbody-products-all");
 const productsAllbtn = document.querySelector("#btn-all-products");
 const createProductBtn = document.querySelector("#btn-create-product");
-const deleteProductBtn = document.querySelector("#btn-delete-product");
 const containerCreateDeleteUpdateProductsCrud= document.querySelector(".container-create-delete-update-products-crud");
 const titleCreateDeleteUpdateProduct = document.querySelector(
   ".title-create-delete-update-product"
@@ -15,6 +14,11 @@ const tbodyProductsRecentToday = document.querySelector(
 );
 const urlProduct = "http://localhost:8080/product";
 const urlSupplier = "http://localhost:8080/supplier";
+let editProductBtn;
+let deleteProductBtn;
+
+console.log(editProductBtn);
+console.log(deleteProductBtn);
 
 menuBtn.addEventListener("click", () => {
   sideMenu.style.display = "block";
@@ -201,20 +205,24 @@ const allproducts = async () => {
           ? "shopee"
           : "warning"
       }">${suppliers.name}</td>
-        <td><span onclick="putProduct(${
+        <td><span id="${
           product.id
-        })" class="material-symbols-outlined btn-edit-product">
+        }" class="material-symbols-outlined btn-edit-product">
         edit</span></td>
-        <td><span onclick="putProduct(${
+        <td><span id="${
           product.id
-        })" class="material-symbols-outlined btn-delete-product">
+        }" class="material-symbols-outlined btn-delete-product">
         delete</span></td>
         `;
       tr.innerHTML = trContent;
       tbodyAllproducts.appendChild(tr);
     }
+    editProductBtn = document.querySelector(".btn-edit-product");
+    deleteProductBtn = document.querySelector(".btn-delete-product");
+    editProductBtn.addEventListener("click", editProduct);
   }
 };
+
 productsAllbtn.addEventListener("click", allproducts);
 
 const toggleSuppler = async (id) => {
@@ -286,7 +294,7 @@ const searchproductNumber = async () => {
   }
 };
 
-
+// create
 const createProduct = function () {
 
   containerCreateDeleteUpdateProductsCrud.innerHTML = "";
@@ -334,6 +342,100 @@ createProductBtn.addEventListener("click", createProduct);
 
 
 const confirmFormCreater = async (event) => {
+  event.preventDefault(); 
+  
+  const name = document.getElementById('nome').value;
+  const value = parseFloat(document.getElementById('valor').value);
+  const description = document.getElementById('descricao').value;
+  const amount = parseInt(document.getElementById('amount').value);
+  const amountMinimum = parseInt(document.getElementById('amountMinimum').value);
+  const supplierId =document.getElementById('select-supplier').value;
+
+  const data = {
+    name,
+    value,
+    description,
+    amount,
+    amountMinimum,
+    supplier: {
+      id: supplierId
+    }
+  };
+  try {
+    const response = await fetch(urlProduct, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+      throw new Error('Erro ao enviar dados para a API');
+    }
+    const responseData = await response.json();
+    console.log('Resposta da API:', responseData);
+  } catch (error) {
+    console.error('Erro ao enviar dados para a API:', error);
+  }
+};
+// edit
+const editProduct =async function () {
+  const btnEditId=btnEdit.document.querySelector("#btn-edit-product");
+  const idproduct=btnEditId.id;
+  const product=await getProduct(idproduct);
+
+  containerCreateDeleteUpdateProductsCrud.innerHTML = "";
+  titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
+
+
+  let createUpdateDeleteFormProduct=document.createElement("div");
+  createUpdateDeleteFormProduct.classList.add("create-update-delete-form-product")
+  let form=document.createElement( "form" );
+  let formGroupText=document.createElement("div")
+  let latelName=document.createElement("label");
+  latelName.setAttribute("for","name")
+  latelName.textContent="Nome:";
+  
+
+      const containerCreateForm = `<div class="create-update-delete-form-product">
+      <form action="">
+          <div class="form-group-text">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" placeholder="Nome produto">
+              <label for="descricao">Descrição</label>
+              <input type="text" id="descricao" placeholder="Descreva o produto">
+          </div>
+          <div class="form-group-number">
+              <div class="form-content-number">
+                  <label for="valor">Valor</label>
+                  <input type="number" id="valor" min="0" step="0.01" required>
+              </div>
+              <div class="form-content-number">
+                  <label for="amount">Quantidade</label>
+                  <input id="amount" type="number" value="0" min="0" max="100" step="1">
+              </div>
+              <div class="form-content-number">
+                  <label for="amountMinimum">Qtd. Mínimo</label>
+                  <input id="amountMinimum" type="number" value="0" min="0" max="100" step="1">
+              </div>
+          </div>
+          <select id="select-supplier" required>
+              <option value="" disabled selected>Selecione um fornecedor</option>
+              <option value="3">ALIXPRESS</option>
+              <option value="4">AMAZON</option>
+              <option value="1">MERCADO LIVRE</option>
+              <option value="2">SHOPEE</option>
+          </select>
+          <button  id="btn-edit-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
+      </form>
+  </div> `;
+        containerCreateDeleteUpdateProductsCrud.innerHTML = containerCreateForm;
+        const btnEditConfirm = document.querySelector("#btn-edit-confirm");
+        btnEditConfirm.addEventListener("click", confirmFormEdit);
+};
+
+const confirmFormEdit = async (event) => {
+  const idProduct=
   event.preventDefault(); 
   
   const name = document.getElementById('nome').value;
