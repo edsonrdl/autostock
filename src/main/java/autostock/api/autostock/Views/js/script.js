@@ -389,12 +389,73 @@ const editProduct =async function () {
 
 
   let createUpdateDeleteFormProduct=document.createElement("div");
-  createUpdateDeleteFormProduct.classList.add("create-update-delete-form-product")
+  createUpdateDeleteFormProduct.classList.add("create-update-delete-form-product");
   let form=document.createElement( "form" );
-  let formGroupText=document.createElement("div")
-  let latelName=document.createElement("label");
-  latelName.setAttribute("for","name")
-  latelName.textContent="Nome:";
+
+  let formGroupText=document.createElement("div");
+
+  formGroupText.classList.add("form-group-text");
+
+  let labelName=document.createElement("label");
+
+  labelName.setAttribute("for","name");
+
+  labelName.textContent="Nome:";
+
+  let inputName=document.createElement("input");
+  inputName.type="text";
+  inputName.setAttribute(id,"name")
+  inputName.value=product.nome;
+
+  let labelDescription=document.createElement("label");
+
+  labelDescription.setAttribute("for","name");
+
+  labelNlabelDescriptioname.textContent="Descrição:";
+
+  let inputDescription=document.createElement("input");
+  inputDescription.type="text";
+  inputDescription.setAttribute(id , "descricao");
+  inputDescription.value=product.description;
+
+  formGroupText.appendChild(labelName);
+  formGroupText.appendChild(inputName); 
+  formGroupText.appendChild(labelDescription);
+  formGroupText.appendChild(inputDescription); 
+
+
+  form.appendChild(formGroupText);
+  
+  let formGroupNumber=document.createElement("div");
+
+  formGroupText.classList.add("form-group-text");
+
+  let formContentNumberValue=document.createElement("div");
+  let lavelValue=document.createElement("label");
+  lavelValue.setAttribute( "for", "valor" );
+  lavelValue.textContent = "Valor";
+
+  let inputValue= document.createElement("input")
+  inputValue.setAttribute("type", "number");
+  inputValue.setAttribute("min",product.value);
+  inputValue.setAttribute("step","0.01");
+  inputValue.setAttribute(id , "valor");
+
+  formContentNumberValue.appendChild(lavelValue) ;
+  formContentNumberValue.appendChild(inputValue) ;
+
+
+  formContentNumberValue.classList.add("form-content-number");
+
+  let formContentNumberAmount=document.createElement("div");
+
+  formContentNumberAmount.classList.add("form-content-number");
+
+  let formContentNumberAmountMinimum=document.createElement("div");
+
+  formContentNumberAmountMinimum.classList.add("form-content-number");
+
+
   
 
       const containerCreateForm = `<div class="create-update-delete-form-product">
