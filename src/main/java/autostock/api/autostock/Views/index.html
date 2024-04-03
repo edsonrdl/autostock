@@ -1,12 +1,402 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Oxygen:wght@300;400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Sistema de Gerenciamento ASI CODE</title>
 </head>
+
 <body>
-    <h1>Olá,Mundo</h1>
-    
+    <div class="container">
+        <header class="header">
+            <div class="container-logo-asi-code">
+                <img src="./assets/imgs/logo-asi-code.png" alt="Logo ASI CODE">
+                <h1>ASI <span>CODE</span></h1>
+            </div>
+            <div class="header-profile">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </button>
+                <div class=theme-toggler>
+                    <span class="material-symbols-outlined active">
+                        light_mode
+                    </span>
+                    <span class="material-symbols-outlined">
+                        dark_mode
+                    </span>
+                </div>
+                <div class="top">
+                    <div class="logo">
+                        <img src="./assets/imgs/profile-admin.png" alt="">
+                    </div>
+                    <div class="close" id="close-btn">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Olá,<b>Edson</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="./imagens/blank-profile-picture-973460_1280.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <aside>
+            <div class="sidebar">
+                <a onclick="showContentMain('dashboard-content')" href="#"><span class="material-symbols-outlined">
+                        team_dashboard
+                    </span>
+                    <h2>Dashboard</h2>
+                </a>
+                <a onclick="showContentMain('products-supplier-content')" href="#"><span
+                        class="material-symbols-outlined">inventory_2</span>
+                    <h2>Produtos</h2>
+                </a>
+                <a href="#"><span class="material-symbols-outlined">mail</span>
+                    <h2>Mensagens</h2> <span class="message-count"></span>
+                </a>
+            </div>
+        </aside>
+        <main>
+            <div id="dashboard-content" class="main-contant">
+                <div class="left">
+                    <div class="title-date">
+                        <h1>Dashboard</h1>
+                        <div class="date">
+                            <h1 id="current-date" class="date-atual"></h1>
+                        </div>
+                    </div>
+                    <div class="infor-graphic-column-circle">
+                        <div class="container-weekly">
+                            <h2>Infográfico semanal</h2>
+                            <h3>Porcentagem de produtos vendidos na semana</h3>
+                            <div class="weekly">
+                                <div class="container-graphic-bar-weekly">
+                                    <div class="content-bars">
+                                        <div class="bar-section bar-dom">
+                                            <div style="height: 80px;" class="bar">
+                                                <p>80%</p>
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Dom</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-seg">
+                                            <div style="height: 30px;" class="bar">
+                                                <p>30%</p>
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Seg</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-terç">
+                                            <div style="height: 15px;" class="bar">
+                                                <p>15%</p>
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Ter</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-quart">
+                                            <div style="height: 60px;" class="bar">
+                                                <p>60%</p>
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Qua</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-quin">
+                                            <div style="height: 33px;" class="bar">
+                                                <p>33%</p>
+
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Qui</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-sex">
+                                            <div style="height: 47px;" class="bar">
+                                                <p>47%</p>
+
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Sex</h2>
+                                            </div>
+                                        </div>
+                                        <div class="bar-section bar-sab">
+                                            <div style="height: 88px;" class="bar">
+                                                <p>88%</p>
+                                            </div>
+                                            <div class="weekly-name">
+                                                <h2>Sáb</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insigths">
+                            <div class="sales">
+                                <span class="material-symbols-outlined">monitoring</span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h1>Serviços <br>Concluídos</h1>
+                                        <p>R$:1.200,00</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="circular-progress-sales">
+                                            <div class="progress-value-sales">
+                                                <p>0%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="expenses">
+                                <span class="material-symbols-outlined">
+                                    bar_chart
+                                </span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h1>Despesas</h1>
+                                        <p>R$:730,00</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="circular-progress-expenses">
+                                            <div class="progress-value-expenses">
+                                                <p>0%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="income">
+                                <span class="material-symbols-outlined">
+                                    stacked_line_chart
+                                </span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h1>Renda</h1>
+                                        <p>R$:840.00</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="circular-progress-income">
+                                            <div class="progress-value-income">
+                                                <p>0%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canceled-progress">
+                                <span class="material-symbols-outlined">
+                                    query_stats
+                                </span>
+                                <div class="middle">
+                                    <div class="left">
+                                        <h1>Serviços<br>Cancelados</h1>
+                                        <p>35</p>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="circular-progress-canceled">
+                                            <div class="progress-value-canceled">
+                                                <p>0%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-recent-products">
+                        <div class="recent-products table">
+                            <h2>Produtos Vendidos Diariamente</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Descrição</th>
+                                    </tr>
+                                <tbody id="tbody-products-today">
+                                </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="products-analytics">
+                        <div class="content-title">
+                            <h1>Produtos mais vendidos</h1>
+                        </div>
+                        <div class="content-products">
+                            <div class="products online">
+                                <div class="img-produtcs">
+                                    <img src="./imagens/camera-510530_640.jpg" alt="">
+                                </div>
+                                <div class="description-product">
+                                    <h2>Nome do produto</h2>
+                                </div>
+                            </div>
+                            <div class="products online">
+                                <div class="img-produtcs">
+                                    <img src="./imagens/camera-510530_640.jpg" alt="">
+                                </div>
+                                <div class="description-product">
+                                    <h2>Nome do produto</h2>
+                                </div>
+                            </div>
+                            <div class="products online">
+                                <div class="img-produtcs">
+                                    <img src="./imagens/camera-510530_640.jpg" alt="">
+                                </div>
+                                <div class="description-product">
+                                    <h2>Nome do produto</h2>
+                                </div>
+                            </div>
+                            <div class="products online">
+                                <div class="img-produtcs">
+                                    <img src="./imagens/earphone-3093921_1280.jpg" alt="">
+                                </div>
+                                <div class="description-product">
+                                    <h2>Nome do produto</h2>
+                                </div>
+                            </div>
+                            <div class="products online">
+                                <div class="img-produtcs">
+                                    <img src="./imagens/microphone-8436595_640.jpg" alt="">
+                                </div>
+                                <div class="description-product">
+                                    <h2>Nome do produto</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="products-supplier-content" class="main-contant disabled-content">
+                <div class="container-all-products-add-products">
+                    <div class="all-products">
+                        <h1>Produtos</h1>
+                        <div class="container-get-btn-all-get-btn-number">
+                            <div class="button-all-products">
+                                <button id="btn-all-products">Buscar produtos</button>
+                            </div>
+                            <div class="button-filter-product-number">
+                                <input type="number" id="input-product" placeholder="Digite o id do produto">
+                                <span onclick="searchproductNumber()" class="material-symbols-outlined">
+                                    search
+                                </span>
+                            </div>
+                            <div class="button-create-product">
+                                <button id="btn-create-product">Criar produto</button>
+                            </div>
+                        </div>
+                        <div class="all-product-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Número de identificação</th>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Descrição</th>
+                                        <th>Quantidade</th>
+                                        <th>Qtd. Mínima</th>
+                                        <th>Fornecedor</th>
+                                    </tr>
+                                <tbody id="tbody-products-all">
+                                </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="create-delete-update-product">
+                        <h1 class="title-create-delete-update-product">Criar produto</h1>
+                        <div class="container-create-delete-update-products-crud">
+                            <!-- <div class="create-update-delete-form-product">
+                                <form action="">
+                                    <div class="form-group-text">
+                                        <label for="">Nome</label>
+                                        <input type="text" placeholder="Nome produto">
+                                        <label for="">Descrição</label>
+                                        <input type="text" placeholder="Descreva o produto">
+                                    </div>
+                                    <div class="form-group-number">
+                                        <div class="form-content-number">
+                                            <label for="">Valor</label>
+                                            <input type="number" min="0" step="0.01" required>
+                                        </div>
+                                        <div class="form-content-number">
+                                            <label for="">Quantidade</label>
+                                            <input id="amount" type="number" value="0" min="0" max="100" step="1">
+                                            <span class="material-symbols-outlined decrement-amount">
+                                                remove
+                                            </span>
+                                            <span class="material-symbols-outlined increment-amount">
+                                                add
+                                            </span>
+                                        </div>
+                                        <div class="form-content-number">
+                                            <label for="">Qtd. Mínimo</label>
+                                            <input id="amountMinimum" type="number" value="0" min="0" max="100" step="1">
+                                            <span class="material-symbols-outlined decrement-amountMinimum">
+                                                remove
+                                            </span>
+                                            <span class="material-symbols-outlined increment-amountMinimum">
+                                                add
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <select id="selectOption" required>
+                                        <option value="" disabled selected>Selecione um fornecedor</option>
+                                        <option value="aliexpress">ALIXPRESS</option>
+                                        <option value="amazon">AMAZON</option>
+                                        <option value="mercado-livre">MERCADO LIVRE</option>
+                                        <option value="shopee">SHOPEE</option>
+                                    </select>
+                                    <button class="btn-add-confirm-or-delete" type="submit">Confirmar</button>
+                                </form>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="products-supplier">
+                    <h2>Sobre Fornecedor</h2>
+                    <div id="supplier-name"></div>
+                    <div class="supplier-description">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Serviço</th>
+                                </tr>
+                            <tbody id="tbody-supplier-description">
+                            </tbody>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./js/script.js"></script>
 </body>
+
 </html>

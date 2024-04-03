@@ -65,7 +65,7 @@ public class SupplierController {
         }
     }
 
-    @GetMapping("/Suppliers")
+    @GetMapping("/suppliers")
     public ResponseEntity<List<Supplier>> getAllSuppliers() {
         List<Supplier> Suppliers = _IGetAllSupplierUseCase.getAllSupplier();
         return ResponseEntity.ok(Suppliers);
