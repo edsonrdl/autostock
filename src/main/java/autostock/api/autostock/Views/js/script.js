@@ -17,8 +17,7 @@ const urlSupplier = "http://localhost:8080/supplier";
 let editProductBtn;
 let deleteProductBtn;
 
-console.log(editProductBtn);
-console.log(deleteProductBtn);
+
 
 menuBtn.addEventListener("click", () => {
   sideMenu.style.display = "block";
@@ -379,135 +378,73 @@ const confirmFormCreater = async (event) => {
   }
 };
 // edit
-const editProduct =async function () {
-  const btnEditId=btnEdit.document.querySelector("#btn-edit-product");
-  const idproduct=btnEditId.id;
-  const product=await getProduct(idproduct);
-
-  containerCreateDeleteUpdateProductsCrud.innerHTML = "";
-  titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
-
-
-  let createUpdateDeleteFormProduct=document.createElement("div");
-  createUpdateDeleteFormProduct.classList.add("create-update-delete-form-product");
-  let form=document.createElement( "form" );
-
-  let formGroupText=document.createElement("div");
-
-  formGroupText.classList.add("form-group-text");
-
-  let labelName=document.createElement("label");
-
-  labelName.setAttribute("for","name");
-
-  labelName.textContent="Nome:";
-
-  let inputName=document.createElement("input");
-  inputName.type="text";
-  inputName.setAttribute(id,"name")
-  inputName.value=product.nome;
-
-  let labelDescription=document.createElement("label");
-
-  labelDescription.setAttribute("for","name");
-
-  labelNlabelDescriptioname.textContent="Descrição:";
-
-  let inputDescription=document.createElement("input");
-  inputDescription.type="text";
-  inputDescription.setAttribute(id , "descricao");
-  inputDescription.value=product.description;
-
-  formGroupText.appendChild(labelName);
-  formGroupText.appendChild(inputName); 
-  formGroupText.appendChild(labelDescription);
-  formGroupText.appendChild(inputDescription); 
-
-
-  form.appendChild(formGroupText);
-  
-  let formGroupNumber=document.createElement("div");
-
-  formGroupText.classList.add("form-group-text");
-
-  let formContentNumberValue=document.createElement("div");
-  let lavelValue=document.createElement("label");
-  lavelValue.setAttribute( "for", "valor" );
-  lavelValue.textContent = "Valor";
-
-  let inputValue= document.createElement("input")
-  inputValue.setAttribute("type", "number");
-  inputValue.setAttribute("min",product.value);
-  inputValue.setAttribute("step","0.01");
-  inputValue.setAttribute(id , "valor");
-
-  formContentNumberValue.appendChild(lavelValue) ;
-  formContentNumberValue.appendChild(inputValue) ;
-
-
-  formContentNumberValue.classList.add("form-content-number");
-
-  let formContentNumberAmount=document.createElement("div");
-
-  formContentNumberAmount.classList.add("form-content-number");
-
-  let formContentNumberAmountMinimum=document.createElement("div");
-
-  formContentNumberAmountMinimum.classList.add("form-content-number");
-
-
-  
-
-      const containerCreateForm = `<div class="create-update-delete-form-product">
-      <form action="">
-          <div class="form-group-text">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" placeholder="Nome produto">
-              <label for="descricao">Descrição</label>
-              <input type="text" id="descricao" placeholder="Descreva o produto">
+const editProduct = async function () {
+  const btnEditIdAll = document.querySelectorAll(".btn-edit-product");
+  btnEditIdAll.forEach(btnEditI => {
+    btnEditI.addEventListener("click", async function(event) {
+      const id = event.target.closest('.btn-edit-product').id;
+      console.log("ID do elemento clicado:", id);
+      const product = await getProduct(id);
+      console.log(product);
+      containerCreateDeleteUpdateProductsCrud.innerHTML = "";
+      titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
+    
+    
+          const containerEditProduct = `
+          <div class="create-update-delete-form-product">
+          <div class="container-edit">
+              <div class="edit-group-text">
+                  <h3>Nome</h3>
+                  <input type="text" id="name-edit" value="${product.name}">
+                  <h3>Descrição</h3>
+                  <input type="text" id="description-edit" value="${product.description}">
+              </div>
+              <div class="edit-group-number">
+                  <div class="edit-content-number">
+                      <h3>Valor</h3>
+                      <input type="number" id="value-edit" value="${product.value}">
+                  </div>
+                  <div class="edit-content-number">
+                      <h3>Quantidade</h3>
+                      <input type="number" id="amount-edit" value="${product.amount}">
+                  </div>
+                  <div class="edit-content-number">
+                      <h3>Qtd. Mínimo</h3>
+                      <input type="number" id="amount-minimum-edit" value="${product.amountMinimum}">
+                  </div>
+              </div>
+              <select id="select-supplier" required>
+                  <option value="" disabled selected>Selecione um fornecedor</option>
+                  <option value="aliexpress">ALIXPRESS</option>
+                  <option value="amazon">AMAZON</option>
+                  <option value="mercado-livre">MERCADO LIVRE</option>
+                  <option value="shopee">SHOPEE</option>
+              </select>
+              <button id="btn-edit-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
           </div>
-          <div class="form-group-number">
-              <div class="form-content-number">
-                  <label for="valor">Valor</label>
-                  <input type="number" id="valor" min="0" step="0.01" required>
-              </div>
-              <div class="form-content-number">
-                  <label for="amount">Quantidade</label>
-                  <input id="amount" type="number" value="0" min="0" max="100" step="1">
-              </div>
-              <div class="form-content-number">
-                  <label for="amountMinimum">Qtd. Mínimo</label>
-                  <input id="amountMinimum" type="number" value="0" min="0" max="100" step="1">
-              </div>
-          </div>
-          <select id="select-supplier" required>
-              <option value="" disabled selected>Selecione um fornecedor</option>
-              <option value="3">ALIXPRESS</option>
-              <option value="4">AMAZON</option>
-              <option value="1">MERCADO LIVRE</option>
-              <option value="2">SHOPEE</option>
-          </select>
-          <button  id="btn-edit-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
-      </form>
-  </div> `;
-        containerCreateDeleteUpdateProductsCrud.innerHTML = containerCreateForm;
-        const btnEditConfirm = document.querySelector("#btn-edit-confirm");
-        btnEditConfirm.addEventListener("click", confirmFormEdit);
+      </div>
+      
+          `;
+            containerCreateDeleteUpdateProductsCrud.innerHTML = containerEditProduct;
+            const btnEditConfirm = document.querySelector("#btn-edit-confirm");
+            btnEditConfirm.addEventListener("click", confirmFormEdit);
+    });
+  });
+      
 };
 
 const confirmFormEdit = async (event) => {
-  const idProduct=
   event.preventDefault(); 
   
-  const name = document.getElementById('nome').value;
+  const name = document.getElementById('name-edit').value;
   console.log(name);
-  const value = parseFloat(document.getElementById('valor').value);
+  const value = parseFloat(document.getElementById('value-edit').value);
   console.log(value);
-  const description = document.getElementById('descricao').value;
+  const description = document.getElementById('description-edit').value;
   console.log(description);
-  const amount = parseInt(document.getElementById('amount').value);
+  const amount = parseInt(document.getElementById('amount-edit').value);
   console.log(amount);
-  const amountMinimum = parseInt(document.getElementById('amountMinimum').value);
+  const amountMinimum = parseInt(document.getElementById('amount-minimum-edit').value);
   console.log(amount);
   const supplierId =document.getElementById('select-supplier').value;
   console.log(supplierId);

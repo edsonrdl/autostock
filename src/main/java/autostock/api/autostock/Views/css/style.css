@@ -1045,7 +1045,6 @@ main .right {
     padding: 10px;
 }
 .create-delete-update-product .container-create-delete-update-products-crud form{
-
     height: 100%;
     width: 100%;
     display: flex;
@@ -1112,10 +1111,16 @@ main .right {
     color: var(--color-back);
     border: solid 1px #3d3d3d;
     border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow-light);
     background: transparent;
     cursor: pointer;
     width: 80%;
     font-size: var(--font-size-2);
+}
+.create-update-delete-form-product select:hover{
+
+    box-shadow:none;
+ 
 }
 .create-update-delete-form-product select option{
   color: var(--color-back);
@@ -1130,29 +1135,6 @@ main .right {
     width: 100%;
     height: 100%;
 }
-  .form-content-number .material-symbols-outlined {
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1.5rem;
-    border: none;
-    background:transparent;
-    color:var(--color-lavender-floral);
-  }
-  .form-content-number .material-symbols-outlined:hover {
-    color:var(--color-warning);
-  }
-  
-  .form-content-number .decrement,.form-content-number .increment {
-    padding: 5px 7px;
-    font-weight: 600;
-    font-family: var(--font-family-manrope);
-    font-size: 1rem;
-    border: none;
-    background:transparent;
-    color:var(--color-lavender-floral);
-    border-radius: 3px;
-    transition: all 300ms ease;
-  }
 .create-update-delete-form-product .btn-add-confirm-or-delete {
     padding: 5px 15px;
     cursor: pointer;
@@ -1172,6 +1154,62 @@ main .right {
     background:var(--color-blue-violet);
     box-shadow:none;
   }   
+  .container-edit{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .edit-group-text{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .edit-group-number{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .edit-content-number{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+.create-update-delete-form-product h3{
+    width: 100%;
+    height: 100%;
+    text-align: start;
+    font-size: var(--font-size-2);
+    font-weight: 600;
+    color: var(--color-onys);
+}
+.container-edit p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: transparent;
+    border: solid 1px #3d3d3d;
+    color: var(--color-back);
+    border-radius: var(--border-radius-2);
+    box-shadow: var(--box-shadow-light);
+    transition: all 300ms ease;
+}
+.container-edit p:hover{
+    box-shadow: none;
+}
 @media (max-width:1470px) {
     .container {
         gap: 50px;
