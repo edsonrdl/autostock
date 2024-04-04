@@ -282,12 +282,20 @@ const searchproductNumber = async () => {
             ? "shopee"
             : "warning"
         }">${suppliers.name}</td>
-        <td><span onclick="putProduct(${product.id})" class="material-symbols-outlined btn-edit-product">edit</span></td>
-        <td><span onclick="deleteProduct(${product.id})" class="material-symbols-outlined btn-delete-product">delete</span></td>
+        <td><span id="${
+          product.id
+        }" class="material-symbols-outlined btn-edit-product">edit</span></td>
+        <td><span id="${
+          product.id
+        }" class="material-symbols-outlined btn-delete-product">delete</span></td>
       `;
       tr.innerHTML = trContent;
       tbodyAllproducts.appendChild(tr);
     }
+    editProductBtn = document.querySelector(".btn-edit-product");
+    deleteProductBtn = document.querySelector(".btn-delete-product");
+    editProductBtn.addEventListener("click", editProduct);
+    
   } catch (error) {
     console.error("Erro ao buscar produto:", error);
   }
@@ -339,7 +347,6 @@ const createProduct = function () {
 
 createProductBtn.addEventListener("click", createProduct);
 
-
 const confirmFormCreater = async (event) => {
   event.preventDefault(); 
   
@@ -388,7 +395,6 @@ const editProduct = async function () {
       console.log(product);
       containerCreateDeleteUpdateProductsCrud.innerHTML = "";
       titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
-    
     
           const containerEditProduct = `
           <div class="create-update-delete-form-product">
@@ -462,7 +468,7 @@ const confirmFormEdit = async (event) => {
 console.log(data);
   try {
     const response = await fetch(urlProduct, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
