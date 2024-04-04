@@ -840,7 +840,8 @@ main table tbody td {
     border: 1px solid #c7c4c4;
     font-family: var(--font-family-manrope);
     background-color: var(--color-background);
-    height: 40px;
+    height: 50px;
+    width: 30px;
     position: sticky;
     top: 0;
     z-index: 1;

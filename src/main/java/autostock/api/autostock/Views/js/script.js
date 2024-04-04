@@ -337,7 +337,8 @@ const createProduct = function () {
           </select>
           <button  id="btn-create-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
       </form>
-  </div> `;
+  </div>
+  `;
         containerCreateDeleteUpdateProductsCrud.innerHTML = containerCreateForm;
         const btnCreateConfirm = document.querySelector("#btn-create-confirm");
         btnCreateConfirm.addEventListener("click", confirmFormCreater);
@@ -392,8 +393,7 @@ const editProduct = async function () {
       containerCreateDeleteUpdateProductsCrud.innerHTML = "";
       titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
     
-          const containerEditProduct = `
-          <div class="create-update-delete-form-product">
+          const containerEditProduct = `<div class="create-update-delete-form-product">
           <div class="container-edit">
               <div class="edit-group-text">
                   <h3>Nome</h3>
@@ -425,8 +425,7 @@ const editProduct = async function () {
               <button id="btn-edit-confirm" class="btn-add-confirm-or-delete" type="button">Confirmar</button>
           </div>
       </div>
-      
-          `;
+      `;
             containerCreateDeleteUpdateProductsCrud.innerHTML = containerEditProduct;
             const btnEditConfirm = document.querySelector("#btn-edit-confirm");
             btnEditConfirm.addEventListener("click", confirmFormEdit);
@@ -440,19 +439,12 @@ const confirmFormEdit = async (event) => {
   const ValidationIdProduct=document.getElementById('name-edit');
   const id=ValidationIdProduct.id;
   event.preventDefault(); 
-  
   const name = document.getElementById('name-edit').value;
-  console.log(name);
   const value = parseFloat(document.getElementById('value-edit').value);
-  console.log(value);
   const description = document.getElementById('description-edit').value;
-  console.log(description);
   const amount = parseInt(document.getElementById('amount-edit').value);
-  console.log(amount);
   const amountMinimum = parseInt(document.getElementById('amount-minimum-edit').value);
-  console.log(amount);
   const supplierId =document.getElementById('select-supplier').value;
-  console.log(supplierId);
 
   const data = {
     name,
@@ -466,7 +458,7 @@ const confirmFormEdit = async (event) => {
   };
 console.log(data);
   try {
-    const response = await fetch(urlProduct+id, {
+    const response = await fetch(urlProduct+"/"+id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -478,6 +470,7 @@ console.log(data);
     }
     const responseData = await response.json();
     console.log('Resposta da API:', responseData);
+    containerCreateDeleteUpdateProductsCrud.innerHTML = "";
   } catch (error) {
     console.error('Erro ao enviar dados para a API:', error);
   }
@@ -545,20 +538,21 @@ const deleteProduct = async function () {
 
 const confirmDeleteProduct = async (event) => {
   event.preventDefault(); 
-  const idProductDelete = document.getElementById('name-delete').value;
+  const idProductDelete = document.querySelector('.name-delete');
+  console.log(idProductDelete.id);
   try {
-    const response = await fetch(urlProduct+idProductDelete, {
+    const response = await fetch(urlProduct+"/"+idProductDelete.id, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      }
     });
     if (!response.ok) {
       throw new Error('Erro ao Deletar dados da API');
     }
     const responseData = await response.json();
     console.log('Resposta da API:', responseData);
+    containerCreateDeleteUpdateProductsCrud.innerHTML = "";
   } catch (error) {
     console.error('Erro ao Deletar dados da API:', error);
   }
