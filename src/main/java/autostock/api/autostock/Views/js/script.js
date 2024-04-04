@@ -153,8 +153,7 @@ async function getProduct(idProduct) {
     console.error('Erro:', error);
     throw error;
   }
-}
-
+};
 
 const dashboardproductsToday = async () => {
   const products = await getAllProducts();
@@ -219,6 +218,7 @@ const allproducts = async () => {
     editProductBtn = document.querySelector(".btn-edit-product");
     deleteProductBtn = document.querySelector(".btn-delete-product");
     editProductBtn.addEventListener("click", editProduct);
+    deleteProductBtn.addEventListener("click", deleteProduct);
   }
 };
 
@@ -301,7 +301,6 @@ const searchproductNumber = async () => {
   }
 };
 
-// create
 const createProduct = function () {
 
   containerCreateDeleteUpdateProductsCrud.innerHTML = "";
@@ -384,15 +383,12 @@ const confirmFormCreater = async (event) => {
     console.error('Erro ao enviar dados para a API:', error);
   }
 };
-// edit
 const editProduct = async function () {
   const btnEditIdAll = document.querySelectorAll(".btn-edit-product");
   btnEditIdAll.forEach(btnEditI => {
     btnEditI.addEventListener("click", async function(event) {
       const id = event.target.closest('.btn-edit-product').id;
-      console.log("ID do elemento clicado:", id);
       const product = await getProduct(id);
-      console.log(product);
       containerCreateDeleteUpdateProductsCrud.innerHTML = "";
       titleCreateDeleteUpdateProduct.innerHTML = "Editar  Produto";
     
@@ -401,7 +397,7 @@ const editProduct = async function () {
           <div class="container-edit">
               <div class="edit-group-text">
                   <h3>Nome</h3>
-                  <input type="text" id="name-edit" value="${product.name}">
+                  <input type="text" id="name-edit" class="${product.id}" value="${product.name}">
                   <h3>Descrição</h3>
                   <input type="text" id="description-edit" value="${product.description}">
               </div>
@@ -440,6 +436,9 @@ const editProduct = async function () {
 };
 
 const confirmFormEdit = async (event) => {
+
+  const ValidationIdProduct=document.getElementById('name-edit');
+  const id=ValidationIdProduct.id;
   event.preventDefault(); 
   
   const name = document.getElementById('name-edit').value;
@@ -467,7 +466,7 @@ const confirmFormEdit = async (event) => {
   };
 console.log(data);
   try {
-    const response = await fetch(urlProduct, {
+    const response = await fetch(urlProduct+id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -481,5 +480,86 @@ console.log(data);
     console.log('Resposta da API:', responseData);
   } catch (error) {
     console.error('Erro ao enviar dados para a API:', error);
+  }
+};
+const deleteProduct = async function () {
+  const btnDeleteIdAll = document.querySelectorAll(".btn-delete-product");
+  btnDeleteIdAll.forEach(btnDeleteId => {
+    btnDeleteId.addEventListener("click", async function(event) {
+      const id = event.target.closest('.btn-delete-product').id;
+      const product = await getProduct(id);
+      containerCreateDeleteUpdateProductsCrud.innerHTML = "";
+      titleCreateDeleteUpdateProduct.innerHTML = "Deletar o Produto?";
+    
+          const containerDeleteProduct = `
+          <div class="create-update-delete-form-product">
+          <div class="container-delete">
+              <div class="edit-group-text">
+                  <h3>Id</h3>
+                  <p class="name-delete" id="${product.id}">${product.id}</p>
+                  <h3>Nome</h3>
+                  <p class="name-delete">${product.name}</p>
+                  <h3>Descrição</h3>
+                  <p class="description-delete">${product.description}</p>
+              </div>
+              <div class="delete-group-number">
+                  <div class="delete-content-number">
+                      <h3>Valor</h3>
+                      <p class="value-delete">${product.value}</p>
+                  </div>
+                  <div class="delete-content-number">
+                      <h3>Quantidade</h3>
+                          <p class="amount-delete">${product.amount}</p>
+                  </div>
+                  <div class="delete-content-number">
+                      <h3>Qtd. Mínimo</h3>
+                      <p class="amount-minimum-delete">${product.amountMinimum}</p>
+                  </div>
+              </div>
+              <div class="delete-content-select">
+              <h3>Fornecedor</h3>
+              <p class="supplier-delete ${
+                product.supplier.name === "ALIEXPRESS"
+                  ? "aliexpress"
+                  : product.supplier.name === "AMAZON"
+                  ? "amazon"
+                  : product.supplier.name === "MERCADO LIVRE"
+                  ? "mercado-livre"
+                  : product.supplier.name === "SHOPEE"
+                  ? "shopee"
+                  : "warning"
+              }">${product.supplier.name}</p>
+              </div>
+              <button id="btn-delete-confirm" class="btn-add-confirm-or-delete"
+                  type="button">Confirmar</button>
+          </div>
+      </div>
+          `;
+            containerCreateDeleteUpdateProductsCrud.innerHTML = containerDeleteProduct;
+            const btnDeleteConfirm = document.querySelector("#btn-delete-confirm");
+            btnDeleteConfirm.addEventListener("click", confirmDeleteProduct);
+    });
+  });
+      
+};
+
+const confirmDeleteProduct = async (event) => {
+  event.preventDefault(); 
+  const idProductDelete = document.getElementById('name-delete').value;
+  try {
+    const response = await fetch(urlProduct+idProductDelete, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!response.ok) {
+      throw new Error('Erro ao Deletar dados da API');
+    }
+    const responseData = await response.json();
+    console.log('Resposta da API:', responseData);
+  } catch (error) {
+    console.error('Erro ao Deletar dados da API:', error);
   }
 };
