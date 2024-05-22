@@ -203,11 +203,10 @@ const allproducts = async () => {
           ? "shopee"
           : "warning"
       }">${suppliers.name}</td>
-        <td><span id="${
-          product.id
+        <td><span onclick="editProduct(event)" .id
         }" class="material-symbols-outlined btn-edit-product">
         edit</span></td>
-        <td><span id="${
+        <td><span onclick="deleteProduct(event)" id="${
           product.id
         }" class="material-symbols-outlined btn-delete-product">
         delete</span></td>
@@ -282,10 +281,10 @@ const searchproductNumber = async () => {
             ? "shopee"
             : "warning"
         }">${suppliers.name}</td>
-        <td><span id="${
+        <td><span onclick="editProduct(event)" id="${
           product.id
         }" class="material-symbols-outlined btn-edit-product">edit</span></td>
-        <td><span id="${
+        <td><span onclick="deleteProduct(event)" id="${
           product.id
         }" class="material-symbols-outlined btn-delete-product">delete</span></td>
       `;
