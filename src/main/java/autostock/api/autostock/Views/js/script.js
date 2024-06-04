@@ -203,7 +203,8 @@ const allproducts = async () => {
           ? "shopee"
           : "warning"
       }">${suppliers.name}</td>
-        <td><span onclick="editProduct(event)" .id
+        <td><span onclick="editProduct(event)" id="${
+          product.id
         }" class="material-symbols-outlined btn-edit-product">
         edit</span></td>
         <td><span onclick="deleteProduct(event)" id="${
